@@ -33,23 +33,32 @@ module EverydayNatsort
       end
 
       def sanatize_loop(ma, mb)
-        it    = 0
-        equal = 0
         ret   = ['', '']
-        while it < [ma.size, mb.size].min && equal == 0
-          if match_numeric?(it, ma, mb)
-            ret = process_numeric_match(it, ma, mb)
-          else
-            ret = process_alpha_match(it, ma, mb)
-          end
-          equal = ret[0] <=> ret[1]
-          it    +=1
-        end
+        (0...[ma.size, mb.size].min).each { |it|
+          ret = process_match(it, ma, mb)
+          break unless check_equal(ret)
+        }
         ret
       end
 
-      def match_numeric?(it, ma, mb)
-        (ma[it] && mb[it]) && (ma[it][1] && mb[it][1]) && (num?(ma[it][0]) && num?(mb[it][0]))
+      def process_match(it, ma, mb)
+        match_num?(it, ma, mb) ? process_numeric_match(it, ma, mb) : process_alpha_match(it, ma, mb)
+      end
+
+      def match_num?(it, ma, mb)
+        both_exist?(it, ma, mb) && both_have_group_1?(it, ma, mb) && both_num?(it, ma, mb)
+      end
+
+      def both_exist?(it, ma, mb)
+        ma[it] && mb[it]
+      end
+
+      def both_have_group_1?(it, ma, mb)
+        ma[it][1] && mb[it][1]
+      end
+
+      def both_num?(it, ma, mb)
+        num?(ma[it][0]) && num?(mb[it][0])
       end
 
       def process_numeric_match(it, ma, mb)
@@ -63,6 +72,10 @@ module EverydayNatsort
 
       def num?(v)
         NUMERIC.match(v)
+      end
+
+      def check_equal(ret)
+        (ret[0] <=> ret[1]) == 0
       end
 
       # format([a, 1], 3) => a001
