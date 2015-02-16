@@ -4,7 +4,7 @@ require_relative 'accents'
 
 module EverydayNatsort
   class Natural
-    REGEXP = /(^|\D+)(\d+|(\D$))/
+    REGEXP  = /(^|\D+)(\d+|(\D$))/
     NUMERIC = /(\d+)/
 
     class << self
@@ -25,23 +25,44 @@ module EverydayNatsort
       end
 
       def nat_sanatize(sa, sb)
-        sa = EverydayNatsort::Accents.sanitize(sa).gsub('-', '_')
-        sb = EverydayNatsort::Accents.sanitize(sb).gsub('-', '_')
+        sa     = EverydayNatsort::Accents.sanitize(sa).gsub('-', '_')
+        sb     = EverydayNatsort::Accents.sanitize(sb).gsub('-', '_')
         ma, mb = multireg(REGEXP, sa), multireg(REGEXP, sb)
-        it     = 0
-        equal  = 0
-        ret    = ['', '']
-        while (it < [ma.size, mb.size].min) and (equal==0)
-          if (ma[it] and mb[it]) and (ma[it][1] and mb[it][1]) and (NUMERIC.match ma[it][0] and NUMERIC.match mb[it][0])
-            l   = [ma[it][2].size, mb[it][2].size].max
-            ret = [format(ma[it], l), format(mb[it], l)]
+        ret    = sanatize_loop(ma, mb)
+        return ret[0], ret[1]
+      end
+
+      def sanatize_loop(ma, mb)
+        it    = 0
+        equal = 0
+        ret   = ['', '']
+        while it < [ma.size, mb.size].min && equal == 0
+          if match_numeric?(it, ma, mb)
+            ret = process_numeric_match(it, ma, mb)
           else
-            ret = [ma[it][0].downcase, mb[it][0].downcase]
+            ret = process_alpha_match(it, ma, mb)
           end
           equal = ret[0] <=> ret[1]
           it    +=1
         end
-        return ret[0], ret[1]
+        ret
+      end
+
+      def match_numeric?(it, ma, mb)
+        (ma[it] && mb[it]) && (ma[it][1] && mb[it][1]) && (num?(ma[it][0]) && num?(mb[it][0]))
+      end
+
+      def process_numeric_match(it, ma, mb)
+        l = [ma[it][2].size, mb[it][2].size].max
+        [format(ma[it], l), format(mb[it], l)]
+      end
+
+      def process_alpha_match(it, ma, mb)
+        [ma[it][0].downcase, mb[it][0].downcase]
+      end
+
+      def num?(v)
+        NUMERIC.match(v)
       end
 
       # format([a, 1], 3) => a001
