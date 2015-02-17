@@ -1,5 +1,12 @@
 # EverydayNatsort
 
+[![Gem Version](https://badge.fury.io/rb/everyday_natsort.svg)](http://badge.fury.io/rb/everyday_natsort)
+[![Build Status](https://travis-ci.org/henderea/everyday_natsort.svg?branch=master)](https://travis-ci.org/henderea/everyday_natsort)
+[![Dependency Status](https://gemnasium.com/henderea/everyday_natsort.svg)](https://gemnasium.com/henderea/everyday_natsort)
+[![Code Climate](https://codeclimate.com/github/henderea/everyday_natsort/badges/gpa.svg)](https://codeclimate.com/github/henderea/everyday_natsort)
+
+Documetation to come at a later point.
+
 TODO: Write a gem description
 
 ## Installation
