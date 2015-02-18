@@ -4,6 +4,7 @@
 [![Build Status](https://travis-ci.org/henderea/everyday_natsort.svg?branch=master)](https://travis-ci.org/henderea/everyday_natsort)
 [![Dependency Status](https://gemnasium.com/henderea/everyday_natsort.svg)](https://gemnasium.com/henderea/everyday_natsort)
 [![Code Climate](https://codeclimate.com/github/henderea/everyday_natsort/badges/gpa.svg)](https://codeclimate.com/github/henderea/everyday_natsort)
+[![Test Coverage](https://codeclimate.com/github/henderea/everyday_natsort/badges/coverage.svg)](https://codeclimate.com/github/henderea/everyday_natsort)
 
 Documetation to come at a later point.
 
