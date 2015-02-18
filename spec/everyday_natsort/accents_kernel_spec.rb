@@ -1,13 +1,13 @@
 # coding: utf-8
 require 'rspec'
-require_relative '../../lib/everyday_natsort'
+require_relative '../../lib/everyday_natsort_kernel'
 
 def test_fixes_char(str, char, count)
-  str2 = EverydayNatsort.strip_accents(str)
+  str2 = str.strip_accents
   expect(str2).to eq (char * count)
 end
 
-describe 'accents' do
+describe 'accents (kernel)' do
   it 'fixes A' do
     str = 'ÀÁÂÃÄÅĀĂĄA'
     test_fixes_char(str, 'A', 10)
