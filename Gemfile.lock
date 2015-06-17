@@ -1,0 +1,45 @@
+PATH
+  remote: .
+  specs:
+    everyday_natsort (1.0.3)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    codeclimate-test-reporter (0.4.7)
+      simplecov (>= 0.7.1, < 1.0.0)
+    diff-lcs (1.2.5)
+    docile (1.1.5)
+    json (1.8.3)
+    rake (10.4.2)
+    rspec (3.3.0)
+      rspec-core (~> 3.3.0)
+      rspec-expectations (~> 3.3.0)
+      rspec-mocks (~> 3.3.0)
+    rspec-core (3.3.0)
+      rspec-support (~> 3.3.0)
+    rspec-expectations (3.3.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.3.0)
+    rspec-mocks (3.3.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.3.0)
+    rspec-support (3.3.0)
+    simplecov (0.10.0)
+      docile (~> 1.1.0)
+      json (~> 1.8)
+      simplecov-html (~> 0.10.0)
+    simplecov-html (0.10.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  bundler (~> 1.10, >= 1.10.4)
+  codeclimate-test-reporter (~> 0.4, >= 0.4.7)
+  everyday_natsort!
+  rake (~> 10.4)
+  rspec (~> 3.3)
+
+BUNDLED WITH
+   1.10.4
