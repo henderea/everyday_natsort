@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    everyday_natsort (1.0.3)
+    everyday_natsort (1.0.4)
 
 GEM
   remote: https://rubygems.org/
